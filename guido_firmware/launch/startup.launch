@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+
+<launch>
+
+	<param command="$(find xacro)/xacro $(find guido_description)/urdf/guido.xacro" name="robot_description"/>
+
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+	<node name="differential" pkg="guido_firmware" type="differential.py" output="screen" />
+	<include file="$(find guido_firmware)/launch/guidolidarS2.launch" />
+
+</launch>

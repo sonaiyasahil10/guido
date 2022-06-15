@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<launch>
+	<!-- Start Google Cartographer node with custom configuration file-->
+    <node name="cartographer_node" pkg="cartographer_ros" type="cartographer_node" args="
+          -configuration_directory
+              $(find guido_firmware)/config
+          -configuration_basename lidar.lua" output="screen">
+    </node>
+
+  <!-- Map Publishing Node -->
+    <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros" type="cartographer_occupancy_grid_node" args="-resolution 0.01" output="screen" />   
+
+  <!-- Start RViz with custom view -->
+    <node pkg="rviz" type="rviz" name="show_rviz" args="-d $(find guido_slam)/rviz/mapping.rviz"/>'
+
+    <node name="odom_publisher" pkg="tortoisebot_firmware" type="odom_pub.py" output="screen"/>
+
+<!--    <include file="$(find ydlidar_ros)/launch/S2.launch" /> -->
+
+</launch>
