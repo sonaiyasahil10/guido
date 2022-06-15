@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+
+<launch>
+	
+	<arg name="map_name" default="map_0"/>
+
+	<node pkg="map_server" type="map_saver" name="map_saver" args="-f $(find guido_navigation)/maps/$(arg map_name)"/>
+
+</launch>
