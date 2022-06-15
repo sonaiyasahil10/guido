@@ -1,0 +1,9 @@
+<launch>
+
+<rosparam file="$(find guido_description)/launch/controller.yaml" command="load"/>
+<node args="fr_joint_position_controller fl_joint_position_controller br_joint_position_controller bl_joint_position_controller joint_state_controller " name="controller_spawner" ns="guido" output="screen" pkg="controller_manager" respawn="false" type="spawner"/>
+<node name="robot_state_publisher" output="screen" pkg="robot_state_publisher" respawn="false" type="robot_state_publisher">
+  <remap from="/joint_states" to="/guido/joint_states"/>
+</node>
+
+</launch>
